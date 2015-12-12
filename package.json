@@ -1,0 +1,20 @@
+{
+  "name": "electron-sample",
+  "version": "1.0.0",
+  "description": "electron first sample.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khwask/electron-sample.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/khwask/electron-sample/issues"
+  },
+  "homepage": "https://github.com/khwask/electron-sample#readme"
+}
