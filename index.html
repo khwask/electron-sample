@@ -1,13 +1,59 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja" ng-app="myApp">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hello Electron!</title>
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   </head>
-  <body>
-    <h1>Hello Electron!</h1>
-    We are using node <script>document.write(process.versions.node)</script>,
-    Chrome <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+  <body ng-controller="mainCtrl as main">
+      <div class="container">
+        <div class="jumbotron">
+          <h1>{{main.pageTitle}}</h1>
+          <p>{{main.description}}</p>
+          <div class="form-inline">
+            <label>なんでも検索</label>
+            <input class="form-control" ng-model="searchText">
+          </div>
+        </div>
+        <table class="table table-hover">
+          <thead>
+            <th>
+              <a href="" ng-click="main.order('areaName')">
+                エリア名
+                <span ng-class="main.sortIcon" aria-hidden="true" ng-show="main.sortColumn === 'areaName'"></span>
+              </a>
+            </th>
+            <th>
+              <a href="" ng-click="main.order('rankList[0].restNum')">
+                No.1
+                <span ng-class="main.sortIcon" aria-hidden="true" ng-show="main.sortColumn === 'rankList[0].restNum'"></span>
+              </a>
+            </th>
+            <th>
+              <a href="" ng-click="main.order('rankList[1].restNum')">
+                No.2
+                <span ng-class="main.sortIcon" aria-hidden="true" ng-show="main.sortColumn === 'rankList[1].restNum'"></span>
+              </a>
+            </th>
+            <th>
+              <a href="" ng-click="main.order('rankList[2].restNum')">
+                No.3
+                <span ng-class="main.sortIcon" aria-hidden="true" ng-show="main.sortColumn === 'rankList[2].restNum'"></span>
+              </a>
+            </th>
+          </thead>
+          <tbody>
+            <tr ng-repeat="rank in main.ranks | filter:searchText | orderBy:main.sortColumn:main.reverse">
+              <td>{{rank.areaName}}</td>
+              <td ng-repeat="cate in rank.rankList">{{cate.category}}({{cate.restNum}})</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <script src="node_modules/angular/angular.js"></script>
+      <script src="node_modules/angular-resource/angular-resource.js"></script>
+      <script src="app.js"></script>
   </body>
 </html>
